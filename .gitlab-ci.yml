@@ -1,0 +1,5 @@
+image: python
+
+job1:
+  script:
+    - tox
