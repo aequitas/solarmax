@@ -1,7 +1,7 @@
+import os
 import socket
 import sys
 import time
-import os
 
 IDC = "IDC"   # DC Current
 UL1 = "UL1"   # Voltage Phase 1
