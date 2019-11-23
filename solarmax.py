@@ -93,13 +93,17 @@ def print_graphite(data, graphite_prefix, now):
     prefix.solarmax.test 123 123456789
 
     """
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
     for metric, value in data.items():
-        print('{prefix}solarmax.{metric} {value} {time}'.format(
+        msg = '{prefix}solarmax.{metric} {value} {time}'.format(
             prefix=graphite_prefix,
             metric=metric,
             value=value,
             time=now,
-        ))
+        )
+        print(msg)
+        sock.sendto(msg + '\n', ('127.0.0.1', 2003))
 
 def main():
     inverter_ip = os.environ.get('INVERTER_IP', '192.168.2.123')
